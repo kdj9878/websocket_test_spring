@@ -29,23 +29,20 @@ public abstract class DataAbstractClass {
         return baseUrl + adaptUrl;
     }
 
+    /**
+     * 디렉토리가 존재할 경우 true, 존재하지 않을 경우 false 반환
+     * @param adaptUrl
+     * @return
+     */
     protected boolean checkFileDirectory(String adaptUrl){
         return Files.exists(Path.of(baseUrl + adaptUrl));
     }
 
-    protected void createFolder(String adaptUrl){
-        File file = new File(baseUrl + adaptUrl);
+    protected void createDirectory(String adaptUrl){
         try{
-            if(!file.exists()){
-                file.mkdir();
-            }
-        }catch (Exception e){
+            Files.createDirectory(Path.of(baseUrl + adaptUrl));
+        }catch (IOException e){
             e.printStackTrace();
         }
     }
-
-    protected abstract void saveWithoutPath(String file, String fileName, String category);
-
-    protected abstract void saveWithPath(String file, String fileName, String category, String path);
-    protected abstract void delete(String category, String fileName) throws IOException;
 }
