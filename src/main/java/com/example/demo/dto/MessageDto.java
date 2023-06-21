@@ -10,5 +10,5 @@ public class MessageDto {
     private String userName;
     private String content;
     private String type;
-    private String sessionId;
+    private Long size;
 }
